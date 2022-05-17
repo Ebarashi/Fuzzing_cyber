@@ -17,12 +17,12 @@ def fuzzing_checker():
         month = datetime.datetime.now().strftime("%b")
         day = str(datetime.datetime.now().day)
         err_counter = 0
-        errors = ["Bad protocol version", "Connection closed by" "kex_exchange_identification", "kex_input_kexinit"]
+        error_list = ["Bad protocol version", "Connection closed by" "kex_exchange_identification", "kex_input_kexinit"]
         with open("/var/log/auth.log", "r") as auth_log:
             for line in auth_log:
                 line_parts = str(line).split(" ")
                 if line_parts[0] == month and line_parts[1] == day:
-                    for error in errors:
+                    for error in error_list:
                         if error in line:
                             err_counter += 1
                             if err_counter > 5:
